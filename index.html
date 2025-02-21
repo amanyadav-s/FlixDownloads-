@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlixDownloads</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding-top: 2px;
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+    /* Grid layout for movie containers */
+    .row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+      margin-inline: 5px;
+    }
+    .m-container {
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      padding-bottom: 5px;
+      overflow: hidden;
+    }
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .movie-info {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+      color: #333;
+    }
+    a {
+      display: inline-block;
+      width: 80%;
+      text-align: center;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    a:hover {
+      background-color: #0056b3;
+    }
+    footer {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 5px;
+}
+  </style>
+</head>
+<body>
+  <h1>FLIXDOWNLOADS</h1>
+  <!-- Movie container -->
+  <div class="row" id="movie-container"></div>
+  <footer>
+  Made with ❤️ by Aman
+</footer>
+  
+  <script>
+    // Fetch movie data from movies.json and dynamically add movie containers
+    fetch('movies.json')
+      .then(response => response.json())
+      .then(movies => {
+          const container = document.getElementById('movie-container');
+          movies.forEach(movie => {
+              const movieDiv = document.createElement('div');
+              movieDiv.className = 'm-container';
+              movieDiv.innerHTML = `
+                <img src="${movie.image}" alt="${movie.title}">
+                <div class="movie-info">${movie.title}</div>
+                <a href="${movie.link}">Download</a>
+              `;
+              container.appendChild(movieDiv);
+          });
+      })
+      .catch(error => console.error('Error fetching movies:', error));
+  </script>
+</body>
+</html>
