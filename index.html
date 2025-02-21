@@ -91,7 +91,7 @@
   
   <script>
     // Fetch movie data from movies.json and dynamically add movie containers
-    fetch('movies.json')
+    fetch('https://raw.githubusercontent.com/amanyadav-s/FlixDownloads-/main/movies.json')
       .then(response => response.json())
       .then(movies => {
           const container = document.getElementById('movie-container');
